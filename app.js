@@ -17,10 +17,9 @@ const game = {
       { name: "rare candy", quantity: 99 },
     ],
   }
+
   console.dir(pokemon, { maxArrayLength: null })
-  //console.dir(59)
-  //console.log(59)
-  //console.log(game)
+  console.log(game)
 
   /*
 Exercise 3
@@ -33,6 +32,8 @@ Solve Exercise 3 here:
 
 game.difficulty = "Hard";
 
+// console.log(game)
+
 /*
 Exercise 4
 1. Select a starter Pokémon from the `pokemon` array. Remember, a starter Pokémon's `starter` property is true.
@@ -44,6 +45,8 @@ Solve Exercise 4 here:
 
 game.party.push(pokemon[24]);
 
+//console.log('party:', game.party)
+
 /*
 Exercise 5
 1. Choose three more Pokémon from the `pokemon` array and add them to your party.
@@ -53,7 +56,9 @@ Exercise 5
 Solve Exercise 5 here:
 */
 
-game.party.push(pokemon[7],pokemon[40],pokemon[77])
+game.party.push(pokemon[11],pokemon[21],pokemon[31]);
+console.log('party:', game.party)
+
 
 /*
 Exercise 6
@@ -64,11 +69,15 @@ Exercise 6
 Solve Exercise 6 here:
 */
 
-game.gyms.forEach ((gym) => {
+//iterate each object in gyms array
+//check each property of the object if diffecutly is below 3 make complete true.
+
+game.gyms.forEach(gym => {
   if (gym.difficulty < 3) {
     gym.completed = true;
   }
-})
+  console.log('gyms', game.gyms)
+});
 
 /*
 Exercise 7
@@ -87,7 +96,7 @@ More Hints: The existing starter Pokemon will be *replaced* in your party with t
 Solve Exercise 7 here:
 */
 
-game.party.splice(24, 1, pokemon[25])
+game.party.splice(0, 1, pokemon[25])
 
 /*
 Exercise 8
@@ -111,11 +120,11 @@ Exercise 9
 
 Solve Exercise 9 here:
 */
-const starterPokemon = [pokemon[24],pokemon[0],pokemon[3],pokemon[6]];
-starterPokemon.forEach((starter)=>{
-console.log(starter.name)
-})
-
+pokemon.forEach((poke) => {
+  if (poke.starter) {
+    console.log(poke.name);
+  }
+});
 /*
 Exercise 10
 1. Add a method called `catchPokemon` to the `game` object. This method should:
@@ -152,8 +161,10 @@ game.catchPokemon = (pokemonObj) => {
 
 
 game.items.forEach((item) => {
-item.quantity -1
-})
+  if (item.name === "pokeball") { 
+    item.quantity--;
+  }
+});
 
 game.catchPokemon(pokemon[15]);
 
@@ -167,9 +178,9 @@ Solve Exercise 12 here:
 
 // my code 
 
-game.gyms.forEach(() => {
-  if (game.gyms < 6) {
-    game.gyms.completed = true;
+game.gyms.forEach((gym) => {
+  if (gym.difficulty < 6) {
+    gym.completed = true;
   }
   
 })
@@ -210,15 +221,23 @@ Solve Exercise 13 here:
 // game.catchPokemon(pokemon[15]);
 
 
-game,gymStatus = () => {
-  let completedTally = 0;
-  let incomletedTally = 0;
+game.gymStatus = () => {
+const gymTally = {
+  completedTally: 0,
+  incompleteTally: 0
+};
 
-  game.gyms
 
-}
-
-gymStatus()
+game.gyms.forEach((gym) => {
+  if (gym.completed) {
+    gymTally.completedTally++; }
+    else {
+      gymTally.incompleteTally++
+    }
+});
+console.log(gymTally);
+};
+game.gymStatus();
 
 /*
 Exercise 14
@@ -232,10 +251,10 @@ This method should:
 Solve Exercise 14 here:
 */
 console.log('------------------')
-game.partyCount ((count) => {
-count = game.party.length
-console.log(count);
-})
+game.partyCount = () => {
+  console.log(game.party.length);
+};
+game.partyCount();
 console.log('------------------')
 /*
 Exercise 15
@@ -245,9 +264,9 @@ Exercise 15
 Solve Exercise 15 here:
 */
 
-game.gyms.forEach(() => {
-  if (game.gyms.difficulty >= 8) {
-    game.gyms.completed = true;
+game.gyms.forEach((gym) => {
+  if (gym.difficulty < 8) {
+    gym.completed = true;
   }
   
 })
